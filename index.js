@@ -3,44 +3,61 @@ const Tello = require("tello-drone");
 const drone = new Tello();
  
 drone.on("connection", () => {
-    console.log("Connected to drone");
+    // console.log("Connected to drone");
 });
- 
+
 drone.on("state", state => {
-    console.log("Recieved State > ", state);
+    // console.log("Recieved State > ", state);
 });
  
 drone.on("send", (err, length) => {
     if (err) console.log(err);
  
-    console.log(`Sent command is ${length} long`);
+    // console.log(`Sent command is ${length} long`);
 });
- 
-drone.on("message", message => {
+
+
+drone.on("message", async (message) => {
     console.log("Recieved Message > ", message);
+    if (isNaN(message)) return;
+    if (parseInt(message) < 75) {
+        console.log('Pin yếu (dưới 75%), không thể cất cánh');
+        await drone.send("land");
+
+        setTimeout(() => {
+            process.exit();
+        }, 2000);
+    }
 });
  
 drone.on("connection", async () => {
     try {
+        await drone.send("battery?")
         await drone.send("takeoff");
         // await drone.send("up", {
-        //     value: 20
+        //     value: 15
         // });
         await drone.send("speed", {
-            value: 100
+            value: 80
         });
         await drone.send("forward", {
             value: 250
         });
-        await drone.send("flip", { value: "f" });
+        await drone.send("flip", {
+            value: "f"
+        });
         await drone.send("back", {
-            value: 300
+            value: 280
         });
         await drone.send("land");
+        await drone.send("battery?");
+        setTimeout(() => {
+            process.exit();
+        }, 2000);
     } catch (error) {
         console.log(error)
         drone.send("land")
         //A short delay so that the land command can be sent before exiting
-        setTimeout(process.exit)
+        setTimeout(process.exit);
     }
 });
