@@ -61,3 +61,6 @@ drone.on("connection", async () => {
         setTimeout(process.exit);
     }
 });
+
+
+console.log('hi')
