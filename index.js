@@ -3,7 +3,7 @@ const Tello = require("tello-drone");
 const drone = new Tello();
  
 drone.on("connection", () => {
-    // console.log("Connected to drone");
+    console.log("Connected to drone");
 });
 
 drone.on("state", state => {
@@ -13,7 +13,7 @@ drone.on("state", state => {
 drone.on("send", (err, length) => {
     if (err) console.log(err);
  
-    // console.log(`Sent command is ${length} long`);
+    console.log(`Sent command is ${length} long`);
 });
 
 
@@ -41,7 +41,7 @@ drone.on("connection", async () => {
             value: 80
         });
         await drone.send("forward", {
-            value: 305
+            value: 300
         });
         await drone.send("flip", {
             value: "f"
