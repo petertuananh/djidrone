@@ -20,8 +20,8 @@ drone.on("send", (err, length) => {
 drone.on("message", async (message) => {
     console.log("Recieved Message > ", message);
     if (isNaN(message)) return;
-    if (parseInt(message) < 75) {
-        console.log('Pin yếu (dưới 75%), không thể cất cánh');
+    if (parseInt(message) < 80) {
+        console.log('Pin yếu (dưới 80%), không đủ an toàn, không cất cánh');
         await drone.send("land");
 
         setTimeout(() => {
@@ -41,13 +41,13 @@ drone.on("connection", async () => {
             value: 80
         });
         await drone.send("forward", {
-            value: 250
+            value: 305
         });
         await drone.send("flip", {
             value: "f"
         });
         await drone.send("back", {
-            value: 280
+            value: 340
         });
         await drone.send("land");
         await drone.send("battery?");
