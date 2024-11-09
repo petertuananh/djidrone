@@ -34,9 +34,9 @@ drone.on("connection", async () => {
     try {
         await drone.send("battery?")
         await drone.send("takeoff");
-        // await drone.send("up", {
-        //     value: 15
-        // });
+        await drone.send("up", {
+            value: 65
+        });
         await drone.send("speed", {
             value: 80
         });
