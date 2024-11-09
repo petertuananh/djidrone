@@ -41,13 +41,13 @@ drone.on("connection", async () => {
             value: 80
         });
         await drone.send("forward", {
-            value: 300
+            value: 290
         });
         await drone.send("flip", {
             value: "f"
         });
         await drone.send("back", {
-            value: 330
+            value: 340
         });
         await drone.send("land");
         await drone.send("battery?");
