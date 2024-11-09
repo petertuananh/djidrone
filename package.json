@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "tello-drone": "^3.0.6"
+  },
+  "bin": "./index.js",
+  "name": "DjiDrone",
+  "pkg": {
+    "scripts": "*.js",
+    "targets": [
+      "node16"
+    ]
   }
 }
