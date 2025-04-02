@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "colors": "^1.4.0",
     "tello-drone": "^3.0.6"
   },
   "bin": "./index.js",
