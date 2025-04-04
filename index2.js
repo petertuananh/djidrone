@@ -58,13 +58,13 @@ drone.on("connection", async () => {
         value: 223
     }); // bay xuyên qua vòng vàng và đến trước vòng xanh lá
     await drone.send('down', {
-        value: 15
+        value: 20
     }); // bay hạ độ cao ngay trước vòng xanh lá
     await drone.send('back', {
         value: 240
     }); // bay ngược về tâm đích
-    await drone.send('land'); // hạ cánh cuối landing space
-    await drone.send('takeoff'); // cất cánh từ landing space
+    // await drone.send('land'); // hạ cánh cuối landing space
+    // await drone.send('takeoff'); // cất cánh từ landing space
     await drone.send('back', {
         value: 46 // nếu box nhỏ => 56
     });
