@@ -38,7 +38,7 @@ const commands = [
         name: 'clear',
         description: 'Xóa hàng đợi',
         exeType: 'eval',
-        cmd: 'nowRouters = [];executeRouters([])',
+        cmd: 'nowRouters = [];executeRouters([]);currentIndex = 0;',
         msg: colors.red('> Đang xóa hàng đợi')
     },
     {
